@@ -1,0 +1,12 @@
+POST http://localhost:5000/books
+Content-Type: application/json
+
+{
+    "name": "buku 4",
+    "year": 2022,
+    "author": "andis",
+    "pageCount": 200
+} 
+
+###
+GET http://localhost:5000/books
