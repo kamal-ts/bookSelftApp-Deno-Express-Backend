@@ -2,20 +2,20 @@ POST http://localhost:5000/books
 Content-Type: application/json
 
 {
-    "name": "buku 3",
+    "name": "buku 4",
     "year": 2022,
     "author": "andis",
     "pageCount": 200
 }
 
 ###
-PATCH  http://localhost:5000/books/58fj34Ev8qqReVO5qNMYhsFNq3a2KT
+PATCH  http://localhost:5000/books/6D03te3rUf5d0BVr31yNVSyg5_Vqrs
 Content-Type: application/json
 
 {
-    "name": "buku 2",
+    "name": "buku 3",
     "year": 2022,
-    "author": "kamal",
+    "author": "andis",
     "pageCount": 200
 } 
 

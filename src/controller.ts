@@ -3,25 +3,23 @@ import { books, Book } from './books.ts';
 import { nanoid } from 'npm:nanoid@3.3.4';
 
 export class Books {
-
     getAllBuku(_req: Request, res: Response): void {
         try {
-            return res.status(200).json(books);
+            return res.status(200).json({con: books.length, data: books});
         } catch (error: Error) {
             return res.status(404).json({ message: error.message });
         }
     }
-
     getBukuById(req: Request, res: Response): void {
         const id: string = req.params.id;
         try {
             const getBook: Book | undefined = books.find((b: Book): boolean => b.id == id);
+            if(!getBook) return res.status(404).json({message: "id not found"})
             return res.status(200).json(getBook);
         } catch (error: Error) {
             return res.status(404).json({ message: error.message });
         }
     }
-
     createBuku(req: Request, res: Response): void {
         const {
             name,
@@ -48,7 +46,6 @@ export class Books {
             return res.status(400).json({ message: error.message });
         }
     }
-
     updateBuku(req: Request, res: Response): void {
         const idBuku: string = req.params.id;
         const {
@@ -74,14 +71,13 @@ export class Books {
             return res.status(400).json({ message: error.message });
         }
     }
-
     deleteBuku(req: Request, res: Response): void {
-        const idBuku = req.params.id;
+        const idBuku: string = req.params.id;
         try {
             const findIndex: number = books.map((b: Book): string => b.id).indexOf(idBuku);
             if (findIndex < 0) return res.status(404).json({message: "id notfound"});
             books.splice(findIndex, 1);
-            res.status(201).json({message: "deleted"});
+            res.status(200).json({message: "deleted"});
         } catch (error: Error) {
             return res.status(400).json({ message: error.message });
         }
