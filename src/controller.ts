@@ -2,28 +2,17 @@ import { Request, Response, Error } from "npm:express@^4.17";
 import { books, Book } from './books.ts';
 import { nanoid } from 'npm:nanoid@3.3.4';
 
-import { PrismaClient } from "../generated/client/deno/edge.ts";
-import { config } from "https://deno.land/std@0.163.0/dotenv/mod.ts";
-
-const envVars = await config();
 
 /**
  * Initialize.
  */
 
-const prisma = new PrismaClient({
-  datasources: {
-    db: {
-      url: envVars.DATABASE_URL,
-    },
-  },
-});
 
 export class Books {
-    async getAllBuku(_req: Request, res: Response) {
+    getAllBuku(_req: Request, res: Response) {
         try {
-            const data = await prisma.book.findMany()
-            return res.status(200).json({con: books.length, data: data});
+            const data = books
+            return res.status(200).json({data: data});
         } catch (error: Error) {
             return res.status(404).json({ message: error.message });
         }
